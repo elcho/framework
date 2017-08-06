@@ -1,2 +1,5 @@
 {
+    "require": {
+        "symfony/http-foundation": "^3.3"
+    }
 }
