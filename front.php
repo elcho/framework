@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__.'/vendor/autoload.php';
-require_once './src/leapYearController.php';
-require_once './src/ageCalculatorcontroller.php';
+//require_once './src/leapYearController.php';
+//require_once './src/ageCalculatorcontroller.php';
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing;
 use Symfony\Component\HttpKernel;
+
 
 function render_template(Request $request) //function used to generate a response based on the request information
 {
@@ -25,6 +26,9 @@ $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 
 $controllerResolver = new HttpKernel\Controller\ControllerResolver();
 $argumentResolver = new HttpKernel\Controller\ArgumentResolver();
+
+$framework = new Simplex\Framework($matcher, $controllerResolver, $argumentResolver);
+$response = $framework->handle($request);
 
 try {
     $request->attributes->add($matcher->match($request->getPathInfo())); //uses the request parameter to get the right page path
