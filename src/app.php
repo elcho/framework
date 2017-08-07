@@ -37,10 +37,6 @@ function my_age_in_2050($age = null) {
 
 $routes->add('my_age_in_2050', new Routing\Route('/my_age_in_2050/{age}', array(
     'age' => null,
-    '_controller' => function ($request) {
-        
-        return new Response(my_age_in_2050($request->attributes->get('age')));
-    }
+    '_controller' => 'AgeCalculatorController::indexAction',
 )));
-
 return $routes;
